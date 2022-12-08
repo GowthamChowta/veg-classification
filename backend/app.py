@@ -1,6 +1,5 @@
 from flask import Flask, request, make_response
 from flask_cors import CORS
-import tensor
 app = Flask(__name__)
 import os
 import glob
