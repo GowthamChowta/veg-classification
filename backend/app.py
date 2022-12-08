@@ -31,7 +31,7 @@ def hello():
 
 
 @app.route("/predict",methods=["POST"])
-def predict(modelParam,img):
+def predict():
     body = request.get_json()
     print(body)
     img = body['img']
