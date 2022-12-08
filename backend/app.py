@@ -43,10 +43,11 @@ def predict():
     elif modelParam == "MobileNet":
         model = MobileNet
     
-    img = np.array(tf.keras.utils.load_img(img))
-    img = np.expand_dims(img,0)
-    y_pred = model.predict(img)
-    return y_pred
+    # img = np.array(tf.keras.utils.load_img(img))
+    # img = np.expand_dims(img,0)
+    # y_pred = model.predict(img)
+    # return y_pred
+    return "True"
 
 
 
