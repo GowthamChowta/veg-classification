@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 app = Flask(__name__)
 import os
@@ -33,7 +33,8 @@ def hello():
 @app.route("/predict",methods=["POST"])
 def predict():
     try:
-        body = request.get_json()
+        body = request.json
+        return jsonify(data)
         # print(body)
         # img = body['img']
         # modelParam = body['modelParam']
