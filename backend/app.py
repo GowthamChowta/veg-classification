@@ -1,13 +1,8 @@
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 app = Flask(__name__)
-import os
-import glob
-import random
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 # Tensorflow import
@@ -21,7 +16,21 @@ BASEPATH="/home/chowtagowtham/Modelsmall"
 Vgg16_model = keras.models.load_model(f'{BASEPATH}/my_h5_VGG16_model.h5')
 Resnet_model =  keras.models.load_model(f'{BASEPATH}/my_h5_Resnet_model.h5')
 MobileNet =  keras.models.load_model(f'{BASEPATH}/my_h5_mobilenet_model.h5')
-
+CLASS_NAMES = ['Bean',
+ 'Bitter_Gourd',
+ 'Bottle_Gourd',
+ 'Brinjal',
+ 'Broccoli',
+ 'Cabbage',
+ 'Capsicum',
+ 'Carrot',
+ 'Cauliflower',
+ 'Cucumber',
+ 'Papaya',
+ 'Potato',
+ 'Pumpkin',
+ 'Radish',
+ 'Tomato']
 CORS(app)
 
 
@@ -54,8 +63,9 @@ def predict():
         print("Image loaded")
         img = np.expand_dims(img,0)
         y_pred = model.predict(img)
-        print(y_pred)
-        return jsonify(y_pred)
+                
+        
+        return CLASS_NAMES[np.argmax(y_pred)]
 
     except Exception as e:
         print(e)
