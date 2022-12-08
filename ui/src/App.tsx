@@ -125,7 +125,7 @@ const Footer = () => {
           <a href="https://www.linkedin.com/in/shyam-kumar-kanuru/">Shyam Kumar</a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/sri-rashmitha-boya/">Rushu</a>
+          <a href="https://www.linkedin.com/in/sri-rashmitha-boya/">Rashmitha</a>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/ritwik-budhiraja-38193b182/">Ritwik</a>
@@ -141,7 +141,12 @@ const Footer = () => {
 export const Results = ({ result }: any) => {
   return (
     <div className="results">
-      <h2>{result && `Predicted Class: ${result}`}</h2>
+      {result && (
+        <div>
+          <div className="results-title">Predicted Class: </div>
+          <div className="results-title">{result}</div>
+        </div>
+      )}
     </div>
   );
 };
