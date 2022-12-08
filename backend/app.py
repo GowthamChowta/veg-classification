@@ -36,6 +36,8 @@ def predict():
     try:        
         # body = request.json
         file = request.files['image']
+        file.save(file.filename)
+        print("file saved")
         payload = request.form.to_dict()
         print(payload,file)
         modelParam = payload['modelParam']
@@ -45,8 +47,9 @@ def predict():
             model = Resnet_model
         elif modelParam == "MobileNet":
             model = MobileNet
-        
+        print("Model selected")
         img = np.array(tf.keras.utils.load_img(file))
+        print("Image loaded")
         img = np.expand_dims(img,0)
         y_pred = model.predict(img)
         return y_pred
