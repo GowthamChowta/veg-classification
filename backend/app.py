@@ -59,7 +59,7 @@ def predict():
         image  = tf.keras.utils.load_img("/home/chowtagowtham/veg-classification/backend/"+file.filename)
         image = image.resize((224,224))
         img = np.array(image)
-        image = image* 1.0/255
+        img = img* 1.0/255
         
         print("Image loaded")
         img = np.expand_dims(img,0)
