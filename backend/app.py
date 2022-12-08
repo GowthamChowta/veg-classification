@@ -38,22 +38,18 @@ def predict():
         file = request.files['image']
         payload = request.form.to_dict()
         print(payload,file)
-        return "True"
-        # print(body)
-        # img = body['img']
-        # modelParam = body['modelParam']
-        # if modelParam == "VGG16":
-        #     model = Vgg16_model
-        # elif modelParam == "ResNet":
-        #     model = Resnet_model
-        # elif modelParam == "MobileNet":
-        #     model = MobileNet
+        modelParam = payload['modelParam']
+        if modelParam == "VGG16":
+            model = Vgg16_model
+        elif modelParam == "ResNet":
+            model = Resnet_model
+        elif modelParam == "MobileNet":
+            model = MobileNet
         
-        # img = np.array(tf.keras.utils.load_img(img))
-        # img = np.expand_dims(img,0)
-        # y_pred = model.predict(img)
-        # return y_pred
-        return "True"
+        img = np.array(tf.keras.utils.load_img(file))
+        img = np.expand_dims(img,0)
+        y_pred = model.predict(img)
+        return y_pred
 
     except Exception as e:
         print(e)
