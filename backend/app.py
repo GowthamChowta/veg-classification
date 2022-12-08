@@ -54,7 +54,8 @@ def predict():
         print("Image loaded")
         img = np.expand_dims(img,0)
         y_pred = model.predict(img)
-        return y_pred
+        print(y_pred)
+        return jsonify(y_pred)
 
     except Exception as e:
         print(e)
