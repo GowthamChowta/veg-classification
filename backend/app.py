@@ -68,11 +68,11 @@ def predict():
         print(y_pred.shape)
         print(np.argsort(y_pred[0]))
         top3PredictedIndexes = np.argsort(y_pred[0])[::-1][:3]
-        top3PredictedClasses = CLASS_NAMES[top3PredictedIndexes]
-        print(top3PredictedClasses)
-        top3PredictedPropbabilities = y_pred[top3PredictedIndexes]
-        print(top3PredictedPropbabilities)
-                
+        top3PredictedClasses = []
+        top3PredictedPropbabilities = []
+        for out in top3PredictedIndexes:
+            top3PredictedClasses.append(CLASS_NAMES[out])
+            top3PredictedPropbabilities.append(y_pred[out])                                
         
         return {"CLASS_NAMES":CLASS_NAMES[np.argmax(y_pred)], "classes": top3PredictedClasses, "prob": top3PredictedPropbabilities}
 
