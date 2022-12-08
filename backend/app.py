@@ -18,9 +18,9 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D
 from tensorflow.random import set_seed
 from tensorflow import keras
 BASEPATH="/home/chowtagowtham/Modelsmall"
-Vgg16_model = keras.models.load_model(f'${BASEPATH}/my_h5_VGG16_model.h5')
-Resnet_model =  keras.models.load_model(f'${BASEPATH}/my_h5_Resnet_model.h5')
-MobileNet =  keras.models.load_model(f'${BASEPATH}/my_h5_mobilenet_model.h5')
+Vgg16_model = keras.models.load_model(f'{BASEPATH}/my_h5_VGG16_model.h5')
+Resnet_model =  keras.models.load_model(f'{BASEPATH}/my_h5_Resnet_model.h5')
+MobileNet =  keras.models.load_model(f'{BASEPATH}/my_h5_mobilenet_model.h5')
 
 CORS(app)
 
