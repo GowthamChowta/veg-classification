@@ -32,22 +32,27 @@ def hello():
 
 @app.route("/predict",methods=["POST"])
 def predict():
-    body = request.get_json()
-    print(body)
-    img = body['img']
-    modelParam = body['modelParam']
-    if modelParam == "VGG16":
-        model = Vgg16_model
-    elif modelParam == "ResNet":
-        model = Resnet_model
-    elif modelParam == "MobileNet":
-        model = MobileNet
-    
-    # img = np.array(tf.keras.utils.load_img(img))
-    # img = np.expand_dims(img,0)
-    # y_pred = model.predict(img)
-    # return y_pred
-    return "True"
+    try:
+        body = request.get_json()
+        print(body)
+        img = body['img']
+        modelParam = body['modelParam']
+        if modelParam == "VGG16":
+            model = Vgg16_model
+        elif modelParam == "ResNet":
+            model = Resnet_model
+        elif modelParam == "MobileNet":
+            model = MobileNet
+        
+        # img = np.array(tf.keras.utils.load_img(img))
+        # img = np.expand_dims(img,0)
+        # y_pred = model.predict(img)
+        # return y_pred
+        return "True"
+
+    except Exception as e:
+        print(e)
+        return "False"
 
 
 
