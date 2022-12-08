@@ -91,7 +91,7 @@ function App() {
               </Fab>
             </div>
             <div className="uploaded-photo">
-              {selectedFile && <div className="keepDistant">Uploaded: {selectedFile.name}</div>}
+              {selectedFile && <div className="keepDistant">Uploaded: {selectedFile.name.slice(10)}</div>}
               {selectedFile && (
                 <div className="keepDistant">
                   {<img src={URL.createObjectURL(selectedFile)} width={190} height={190}></img>}
