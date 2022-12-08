@@ -47,3 +47,8 @@ def predict(modelParam,img):
     img = np.expand_dims(img,0)
     y_pred = model.predict(img)
     return y_pred
+
+
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0")
