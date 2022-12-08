@@ -47,7 +47,10 @@ def predict():
         elif modelParam == "MobileNet":
             model = MobileNet
         print("Model selected")
-        img = np.array(tf.keras.utils.load_img("/home/chowtagowtham/veg-classification/backend/"+file.filename))
+        image  = tf.keras.utils.load_img("/home/chowtagowtham/veg-classification/backend/"+file.filename)
+        image = image.resize(224,224,3)
+        img = np.array(image)
+        
         print("Image loaded")
         img = np.expand_dims(img,0)
         y_pred = model.predict(img)
