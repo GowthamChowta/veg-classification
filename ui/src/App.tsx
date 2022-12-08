@@ -55,7 +55,7 @@ function App() {
   console.log('File name is', selectedFile);
 
   return (
-    <div>
+    <div className="allapp">
       <div className="vegetable-classification">
         <div className="vegetable-cls-container">
           <div className="title">
@@ -124,7 +124,7 @@ function App() {
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div id="footer">
       <ul className="footerul">
         <li>
           <a href="https://www.linkedin.com/in/sri-rashmitha-boya/">Rashmitha</a>

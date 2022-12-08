@@ -40,7 +40,7 @@
 .vegetable-classification {
   /* border: 1px solid red; */
   margin: 0px 10px;
-  padding: 50px;
+  padding: 10px;
 }
 
 .upload-photo-button {
@@ -57,10 +57,10 @@
   /* width: 400px; */
   width: 800px;
   /* height: fit-content; */
-  padding: 20px 0px;
+  padding: 15px 0px;
   /* margin-left: 20%; */
   /* margin: auto; */
-  margin: 10px auto 50px;
+  margin: 4px auto 50px;
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(42, 32, 145, 0.16);
 }
@@ -73,7 +73,7 @@
   margin-top: 10px;
 }
 
-.footer {
+#footer {
   display: flex;
   height: 8vh;
   width: 100%;
@@ -81,21 +81,24 @@
   line-height: 1.3;
   font-family: Menlo, monospace;
   /* margin-top: auto; */
-  position: relative;
+  position: fixed;
   bottom: 0;
-}
-
-@media (max-width: 480px) {
-  .footer {
-    height: 25vh;
-  }
+  /* margin-top: -8vh; */
+  /* negative value of footer height */
+  /* height: 180px; */
 }
 
 .footerul {
   /* display: flex; */
   /* flex-direction: column; */
   align-items: center;
-  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  #footer {
+    height: 22vh;
+    line-height: 1;
+  }
 }
 
 @keyframes wave-animation {
@@ -225,4 +228,8 @@ li:hover ~ li p {
   .rainbow {
     animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
   }
+}
+
+.allapp {
+  width: 100%;
 }
