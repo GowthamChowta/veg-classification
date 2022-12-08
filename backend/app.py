@@ -32,9 +32,12 @@ def hello():
 
 @app.route("/predict",methods=["POST"])
 def predict():
-    try:
-        body = request.json
-        return jsonify(data)
+    try:        
+        # body = request.json
+        payload = request.form.to_dict()
+        file = request.files['image']
+        print(payload,file)
+        return "True"
         # print(body)
         # img = body['img']
         # modelParam = body['modelParam']
