@@ -34,15 +34,15 @@ def hello():
 def predict():
     try:
         body = request.get_json()
-        print(body)
-        img = body['img']
-        modelParam = body['modelParam']
-        if modelParam == "VGG16":
-            model = Vgg16_model
-        elif modelParam == "ResNet":
-            model = Resnet_model
-        elif modelParam == "MobileNet":
-            model = MobileNet
+        # print(body)
+        # img = body['img']
+        # modelParam = body['modelParam']
+        # if modelParam == "VGG16":
+        #     model = Vgg16_model
+        # elif modelParam == "ResNet":
+        #     model = Resnet_model
+        # elif modelParam == "MobileNet":
+        #     model = MobileNet
         
         # img = np.array(tf.keras.utils.load_img(img))
         # img = np.expand_dims(img,0)
