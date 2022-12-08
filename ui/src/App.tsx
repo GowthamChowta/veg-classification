@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import axios from 'axios';
 
-const URL1 = 'http://34.171.107.1:5000/predict';
+const URL1 = 'http://34.171.107.1:5001/predict';
 
 function App() {
   const [model, setModel] = useState('');
