@@ -96,8 +96,8 @@
 
 @media (max-width: 480px) {
   #footer {
-    height: 22vh;
-    line-height: 1;
+    height: 0vh;
+    display: none;
   }
 }
 
