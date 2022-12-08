@@ -40,8 +40,8 @@ function App() {
         },
       })
       .then(response => {
-        console.log(response);
-        setResult(response.data);
+        console.log('Response is', response);
+        setResult(response.data['CLASS_NAMES']);
         setIsLoading(false);
       })
       .catch(error => {

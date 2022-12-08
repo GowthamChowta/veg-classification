@@ -64,9 +64,12 @@ def predict():
         print("Image loaded")
         img = np.expand_dims(img,0)
         y_pred = model.predict(img)
+        top3PredictedIndexes = np.argsort(y_pred[0])[::-1][:3]
+        top3PredictedClasses = CLASS_NAMES[top3PredictedIndexes]
+        top3PredictedPropbabilities = y_pred[top3PredictedIndexes]
                 
         
-        return CLASS_NAMES[np.argmax(y_pred)]
+        return {"CLASS_NAMES":CLASS_NAMES[np.argmax(y_pred)], "classes": top3PredictedClasses, "prob": top3PredictedPropbabilities}
 
     except Exception as e:
         print(e)
