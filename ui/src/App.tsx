@@ -94,7 +94,7 @@ function App() {
               {selectedFile && <div className="keepDistant">Uploaded: {selectedFile.name}</div>}
               {selectedFile && (
                 <div className="keepDistant">
-                  {<img src={URL.createObjectURL(selectedFile)} width={224} height={224}></img>}
+                  {<img src={URL.createObjectURL(selectedFile)} width={190} height={190}></img>}
                 </div>
               )}
             </div>
@@ -109,9 +109,14 @@ function App() {
               Predict
             </LoadingButton>
           </div>
-          <Results result={result} />
+          {result && (
+            <div className="rainbow">
+              <Results result={result} />
+            </div>
+          )}
         </div>
       </div>
+
       <Footer />
     </div>
   );
@@ -122,10 +127,10 @@ const Footer = () => {
     <div className="footer">
       <ul className="footerul">
         <li>
-          <a href="https://www.linkedin.com/in/shyam-kumar-kanuru/">Shyam Kumar</a>
+          <a href="https://www.linkedin.com/in/sri-rashmitha-boya/">Rashmitha</a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/sri-rashmitha-boya/">Rashmitha</a>
+          <a href="https://www.linkedin.com/in/shyam-kumar-kanuru/">Shyam Kumar</a>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/ritwik-budhiraja-38193b182/">Ritwik</a>

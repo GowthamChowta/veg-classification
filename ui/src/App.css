@@ -38,8 +38,8 @@
 }
 
 .vegetable-classification {
-  border: 1px solid red;
-  margin: 10px;
+  /* border: 1px solid red; */
+  margin: 0px 10px;
   padding: 50px;
 }
 
@@ -58,7 +58,8 @@
   width: 800px;
   /* height: fit-content; */
   padding: 20px 0px;
-  margin-left: 20%;
+  /* margin-left: 20%; */
+  margin: auto;
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(42, 32, 145, 0.16);
 }
@@ -73,18 +74,25 @@
 
 .footer {
   display: flex;
-  height: 10vh;
+  height: 8vh;
   width: 100%;
   background-color: #002a38;
   line-height: 1.3;
   font-family: Menlo, monospace;
-  margin-top: auto;
+  /* margin-top: auto; */
   position: fixed;
   bottom: 0;
 }
 
+@media (max-width: 480px) {
+  .footer {
+    height: 25vh;
+  }
+}
+
 .footerul {
   align-items: center;
+  justify-content: center;
 }
 
 @keyframes wave-animation {
@@ -142,7 +150,7 @@ li:hover ~ li p {
 }
 
 .results {
-  margin-top: 20px;
+  margin-top: 0px;
   /* border: 1px solid red; */
   padding: 20px 0px;
 }
@@ -156,4 +164,60 @@ li:hover ~ li p {
   display: inline;
   font-size: larger;
   font-weight: 500;
+}
+
+:root {
+  --angle: 45deg;
+  --opacity: 0.5;
+}
+
+.rainbow {
+  width: fit-content;
+  height: fit-content;
+  padding: 2px 5px;
+  border-radius: 2px;
+  margin: 7px;
+
+  display: grid;
+  place-content: center;
+  text-align: center;
+
+  font-size: 1em;
+
+  --border-size: 0.1rem;
+  border: var(--border-size) solid transparent;
+
+  /* Paint an image in the border */
+  border-image: conic-gradient(from var(--angle), #d53e33 0deg 90deg, #399953 270deg 360deg) 1 stretch;
+  background: rgb(255 255 255 / var(--opacity));
+}
+
+@supports (background: paint(houdini)) {
+  @property --opacity {
+    syntax: '<number>';
+    initial-value: 0.5;
+    inherits: false;
+  }
+
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes opacityChange {
+    to {
+      --opacity: 1;
+    }
+  }
+
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  .rainbow {
+    animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
+  }
 }
