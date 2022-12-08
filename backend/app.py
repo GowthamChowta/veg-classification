@@ -58,6 +58,7 @@ def predict():
         print("Model selected")
         image  = tf.keras.utils.load_img("/home/chowtagowtham/veg-classification/backend/"+file.filename)
         image = image.resize((224,224))
+        image = image* 1.0/255
         img = np.array(image)
         
         print("Image loaded")
