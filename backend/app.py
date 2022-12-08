@@ -71,8 +71,8 @@ def predict():
         top3PredictedClasses = []
         top3PredictedPropbabilities = []
         for out in top3PredictedIndexes:
-            top3PredictedClasses.append(CLASS_NAMES[out])
-            top3PredictedPropbabilities.append(y_pred[0][out])                                
+            top3PredictedClasses.append(str(CLASS_NAMES[out]))
+            top3PredictedPropbabilities.append(str(y_pred[0][out]))                                
         out = {"CLASS_NAMES":CLASS_NAMES[np.argmax(y_pred)], "classes": top3PredictedClasses, "prob": top3PredictedPropbabilities}
         print(out)
         return out
