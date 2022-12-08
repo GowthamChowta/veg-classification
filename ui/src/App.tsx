@@ -11,27 +11,38 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import axios from 'axios';
 
+const URL1 = 'http://34.171.107.1:5000/predict';
+
 function App() {
   const [model, setModel] = useState('');
   const [loading, setIsLoading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState<any>();
+  const [result, setResult] = useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
     setModel(event.target.value as string);
   };
   const handleFileUpload = (event: any) => {
     setSelectedFile(event.target.files[0]);
-    console.log('File is uploaded');
-    console.log(selectedFile);
+    setResult('');
   };
 
   const inferenceModel = () => {
-    setIsLoading(false);
+    let data = new FormData();
+    data.append('image', selectedFile as any);
+    data.append('modelParam', model);
+
+    setIsLoading(true);
     axios
-      .post('/', {})
+      .post(URL1, data, {
+        headers: {
+          'Content-Type': `multipart/form-data`,
+        },
+      })
       .then(response => {
         console.log(response);
-        setIsLoading(true);
+        setResult(response.data);
+        setIsLoading(false);
       })
       .catch(error => {
         console.log(error);
@@ -52,18 +63,19 @@ function App() {
           </div>
           <div className="formfield">
             <InputLabel id="model">Model</InputLabel>
-            <Select
-              labelId="model"
-              id="demo-simple-select"
-              value={model}
-              label="Model"
-              onChange={handleChange}
-              sx={{ width: 150 }}>
-              <MenuItem value={'base-line-cnn'}>Base Line CNN</MenuItem>
-              <MenuItem value={'vgg'}>VGG</MenuItem>
-              <MenuItem value={'resnet'}>ResNet</MenuItem>
-              <MenuItem value={'mobilenet'}>MobileNet</MenuItem>
-            </Select>
+            <div className="dropdown">
+              <Select
+                labelId="model"
+                id="demo-simple-select"
+                value={model}
+                label="Model"
+                onChange={handleChange}
+                sx={{ width: 150 }}>
+                <MenuItem value={'VGG16'}>VGG</MenuItem>
+                <MenuItem value={'ResNet'}>ResNet</MenuItem>
+                <MenuItem value={'MobileNet'}>MobileNet</MenuItem>
+              </Select>
+            </div>
           </div>
           <label htmlFor="upload-photo" className="upload-photo formfield">
             <input
@@ -73,15 +85,31 @@ function App() {
               type="file"
               onChange={handleFileUpload}
             />
-            <Fab color="secondary" size="small" component="span" aria-label="add" variant="extended">
-              <AddIcon /> Upload photo
-            </Fab>
+            <div className="upload-photo-button">
+              <Fab color="secondary" size="small" component="span" aria-label="add" variant="extended">
+                <AddIcon /> {!selectedFile ? 'Upload Photo' : 'Re-Upload photo'}
+              </Fab>
+            </div>
+            <div className="uploaded-photo">
+              {selectedFile && <div className="keepDistant">Uploaded: {selectedFile.name}</div>}
+              {selectedFile && (
+                <div className="keepDistant">
+                  {<img src={URL.createObjectURL(selectedFile)} width={224} height={224}></img>}
+                </div>
+              )}
+            </div>
           </label>
           <div className="formfield">
-            <LoadingButton loading={loading} loadingPosition="start" variant="contained">
+            <LoadingButton
+              loading={loading}
+              loadingPosition="start"
+              variant="contained"
+              onClick={inferenceModel}
+              sx={{ width: '140px' }}>
               Predict
             </LoadingButton>
           </div>
+          <Results result={result} />
         </div>
       </div>
       <Footer />
@@ -106,6 +134,14 @@ const Footer = () => {
           <p>👋</p>
         </li>
       </ul>
+    </div>
+  );
+};
+
+export const Results = ({ result }: any) => {
+  return (
+    <div className="results">
+      <h2>{result && `Predicted Class: ${result}`}</h2>
     </div>
   );
 };
